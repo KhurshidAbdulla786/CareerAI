@@ -2,26 +2,31 @@
 
 An AI-powered career assistant that helps fresh graduates analyze their CV, understand their skills, match with jobs, identify skill gaps, create learning roadmaps, and prepare for interviews.
 
-**Status:** Early development — project scaffolding in progress.
+**Status:** Active development — authentication complete, AI features in progress.
 
 ## Vision
 
-CareerAI will be a full-stack platform leveraging Large Language Models (LLMs) to provide intelligent career guidance. The application will be structured as a monorepo with three services:
+CareerAI is a full-stack platform leveraging Large Language Models (LLMs) to provide intelligent career guidance. The application is structured as a monorepo with three services:
 
 - **Backend** — Node.js + Express API server (data persistence, auth, orchestration)
 - **Frontend** — React + Vite UI (user-facing interface)
 - **AI Service** — Python FastAPI server (LLM-powered analysis via LangChain)
 
-## Planned Features
+## Features
 
+### ✅ Implemented
+- **User Authentication** — JWT-based register/login, email verification, protected routes
+- **Profile Management** — user profile retrieval & updates
+- **Protected Routing** — frontend route guards redirect unauthenticated users to login
+
+### 🚧 In Progress / Planned
 - CV Upload & AI-Powered Analysis
 - Job Description Matching with Skill Comparison
 - Skill Gap Analysis & Learning Roadmaps
 - AI Career Chat Assistant (RAG-based)
 - Interview Simulation with AI Feedback
-- User Authentication & Profile Management
 
-## Tech Stack (Planned)
+## Tech Stack
 
 | Layer | Technology |
 |-------|-----------|
@@ -35,12 +40,12 @@ CareerAI will be a full-stack platform leveraging Large Language Models (LLMs) t
 | Day | Milestone | Status |
 |-----|-----------|--------|
 | 1 | Project initialization & monorepo scaffolding | ✅ |
-| 2 | &nbsp; | &nbsp; |
-| 3 | &nbsp; | &nbsp; |
-| 4 | &nbsp; | &nbsp; |
-| 5 | &nbsp; | &nbsp; |
-| 6 | &nbsp; | &nbsp; |
-| 7 | &nbsp; | &nbsp; |
-| 8 | &nbsp; | &nbsp; |
-| 9 | &nbsp; | &nbsp; |
-| 10 | &nbsp; | &nbsp; |
+| 2 | Backend setup — Express server, MongoDB models (User, Job, ChatHistory) | ✅ |
+| 3 | Authentication — JWT auth, email verification, protected routes | ✅ |
+| 4 | CV Analyzer — upload & AI-powered analysis | 🔄 |
+| 5 | Job Matching — skill comparison & gap analysis | ⬜ |
+| 6 | Skill Gap Analysis & Learning Roadmaps | ⬜ |
+| 7 | AI Career Chat Assistant (RAG-based) | ⬜ |
+| 8 | Interview Simulation with AI Feedback | ⬜ |
+| 9 | Frontend polish, testing & deployment | ⬜ |
+| 10 | Final review & documentation | ⬜ |
