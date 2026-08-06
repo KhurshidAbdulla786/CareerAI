@@ -18,9 +18,9 @@ CareerAI is a full-stack platform leveraging Large Language Models (LLMs) to pro
 - **User Authentication** — JWT-based register/login, email verification, protected routes
 - **Profile Management** — user profile retrieval & updates
 - **Protected Routing** — frontend route guards redirect unauthenticated users to login
+- **CV Upload & AI-Powered Analysis** — PDF upload, text extraction, AI analysis (score, strengths, weaknesses, ATS compatibility, suggestions)
 
 ### 🚧 In Progress / Planned
-- CV Upload & AI-Powered Analysis
 - Job Description Matching with Skill Comparison
 - Skill Gap Analysis & Learning Roadmaps
 - AI Career Chat Assistant (RAG-based)
@@ -42,8 +42,8 @@ CareerAI is a full-stack platform leveraging Large Language Models (LLMs) to pro
 | 1 | Project initialization & monorepo scaffolding | ✅ |
 | 2 | Backend setup — Express server, MongoDB models (User, Job, ChatHistory) | ✅ |
 | 3 | Authentication — JWT auth, email verification, protected routes | ✅ |
-| 4 | CV Analyzer — upload & AI-powered analysis | 🔄 |
-| 5 | Job Matching — skill comparison & gap analysis | ⬜ |
+| 4 | CV Analyzer — upload & AI-powered analysis | ✅ |
+| 5 | Job Matching — skill comparison & gap analysis | 🔄 |
 | 6 | Skill Gap Analysis & Learning Roadmaps | ⬜ |
 | 7 | AI Career Chat Assistant (RAG-based) | ⬜ |
 | 8 | Interview Simulation with AI Feedback | ⬜ |
