@@ -47,8 +47,8 @@ CareerAI is a full-stack platform leveraging Large Language Models (LLMs) to pro
 | 4 | CV Analyzer — upload & AI-powered analysis | ✅ |
 | 4b | PDF Parsing — pdf-parse (Node) & pypdf2 (Python) | ✅ |
 | 4c | AI Integration — Groq (Llama 3.3 70B) via LangChain | ✅ |
-| 5 | Job Matching — skill comparison & gap analysis | 🔄 |
-| 6 | Skill Gap Analysis & Learning Roadmaps | ⬜ |
+| 5 | Job Matching — skill comparison & gap analysis | ✅ |
+| 6 | Skill Gap Analysis & Learning Roadmaps | ✅ |
 | 7 | AI Career Chat Assistant (RAG-based) | ⬜ |
 | 8 | Interview Simulation with AI Feedback | ⬜ |
 | 9 | Frontend polish, testing & deployment | ⬜ |
