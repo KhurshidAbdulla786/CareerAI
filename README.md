@@ -49,7 +49,7 @@ CareerAI is a full-stack platform leveraging Large Language Models (LLMs) to pro
 | 4c | AI Integration — Groq (Llama 3.3 70B) via LangChain | ✅ |
 | 5 | Job Matching — skill comparison & gap analysis | ✅ |
 | 6 | Skill Gap Analysis & Learning Roadmaps | ✅ |
-| 7 | AI Career Chat Assistant (RAG-based) | ⬜ |
+| 7 | AI Career Chat Assistant (RAG-based) | ✅ |
 | 8 | Interview Simulation with AI Feedback | ⬜ |
 | 9 | Frontend polish, testing & deployment | ⬜ |
 | 10 | Final review & documentation | ⬜ |
