@@ -2,7 +2,7 @@
 
 An AI-powered career assistant that helps fresh graduates analyze their CV, understand their skills, match with jobs, identify skill gaps, create learning roadmaps, and prepare for interviews.
 
-**Status:** Active development — authentication complete, AI features in progress.
+**Status:** Active development — core AI features & UI complete!
 
 ## Vision
 
@@ -21,12 +21,14 @@ CareerAI is a full-stack platform leveraging Large Language Models (LLMs) to pro
 - **CV Upload & AI-Powered Analysis** — PDF upload, text extraction, AI analysis (score, strengths, weaknesses, ATS compatibility, suggestions)
 - **PDF Parsing** — PDF text extraction via `pdf-parse` (Node.js) & `pypdf2` (Python AI service)
 - **AI Integration** — Groq (Llama 3.3 70B) via LangChain with OpenAI fallback & mock mode
+- **Job Description Matching** — skill comparison & gap analysis against target job postings
+- **Skill Gap Analysis & Learning Roadmaps** — personalized skill gap identification & step-by-step learning roadmaps
+- **AI Career Chat Assistant** — interactive career mentor with advice and guidance
+- **Interview Simulation** — mock interview practice with AI real-time evaluation and feedback
 
 ### 🚧 In Progress / Planned
-- Job Description Matching with Skill Comparison
-- Skill Gap Analysis & Learning Roadmaps
-- AI Career Chat Assistant (RAG-based)
-- Interview Simulation with AI Feedback
+- Docker containerization & production deployment setup
+- Automated testing & performance optimization
 
 ## Tech Stack
 
