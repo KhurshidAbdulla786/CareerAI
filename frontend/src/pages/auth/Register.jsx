@@ -4,7 +4,9 @@ import { useAuth } from '../../contexts/AuthContext';
 import toast from 'react-hot-toast';
 import { motion } from 'framer-motion';
 
-const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || '';
+const GOOGLE_CLIENT_ID =
+  import.meta.env.VITE_GOOGLE_CLIENT_ID ||
+  '316142911468-linq7pupn77251o519vjl8o0nf2pl2hg.apps.googleusercontent.com';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -14,33 +16,63 @@ const Register = () => {
     confirmPassword: '',
   });
   const [loading, setLoading] = useState(false);
+  const [googleReady, setGoogleReady] = useState(false);
   const googleBtnRef = useRef(null);
-  const { register, googleLogin } = useAuth();
+  const { register, googleLogin, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!GOOGLE_CLIENT_ID || !window.google) return;
-    window.google.accounts.id.initialize({
-      client_id: GOOGLE_CLIENT_ID,
-      callback: async (response) => {
-        try {
-          await googleLogin(response.credential);
-          toast.success('Welcome! 🎉');
-          navigate('/dashboard');
-        } catch (error) {
-          toast.error(error.message || 'Google login failed');
-        }
-      },
-    });
-    if (googleBtnRef.current) {
-      window.google.accounts.id.renderButton(googleBtnRef.current, {
-        theme: 'outline',
-        size: 'large',
-        width: 320,
-      });
+    if (isAuthenticated) {
+      navigate('/dashboard', { replace: true });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [GOOGLE_CLIENT_ID]);
+  }, [isAuthenticated, navigate]);
+
+  useEffect(() => {
+    let intervalId = null;
+
+    const initGoogle = () => {
+      if (!GOOGLE_CLIENT_ID || !window.google?.accounts?.id) return false;
+      try {
+        window.google.accounts.id.initialize({
+          client_id: GOOGLE_CLIENT_ID,
+          callback: async (response) => {
+            try {
+              await googleLogin(response.credential);
+              toast.success('Welcome! 🎉');
+              // Navigation is handled by the isAuthenticated useEffect above
+            } catch (error) {
+              toast.error(error.message || 'Google login failed');
+            }
+          },
+        });
+        if (googleBtnRef.current) {
+          googleBtnRef.current.innerHTML = '';
+          window.google.accounts.id.renderButton(googleBtnRef.current, {
+            theme: 'outline',
+            size: 'large',
+            width: 320,
+          });
+          setGoogleReady(true);
+        }
+        return true;
+      } catch (err) {
+        console.error('Error initializing Google Sign-In:', err);
+        return false;
+      }
+    };
+
+    if (!initGoogle()) {
+      intervalId = setInterval(() => {
+        if (initGoogle()) {
+          clearInterval(intervalId);
+        }
+      }, 500);
+    }
+
+    return () => {
+      if (intervalId) clearInterval(intervalId);
+    };
+  }, [googleLogin, navigate]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -66,6 +98,18 @@ const Register = () => {
       toast.error(error.response?.data?.message || 'Registration failed');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleGoogleSignIn = () => {
+    if (!GOOGLE_CLIENT_ID) {
+      toast.error('Google login is not configured. Set VITE_GOOGLE_CLIENT_ID.');
+      return;
+    }
+    if (window.google?.accounts?.id) {
+      window.google.accounts.id.prompt();
+    } else {
+      toast.error('Google Sign-In is still loading. Please try again in a moment.');
     }
   };
 
@@ -174,37 +218,25 @@ const Register = () => {
           </div>
 
           {/* Google Sign-In */}
-          {GOOGLE_CLIENT_ID ? (
-            <div>
-              <div ref={googleBtnRef} className="flex justify-center mb-3" />
-              <button
-                type="button"
-                onClick={() => {
-                  if (!GOOGLE_CLIENT_ID) {
-                    toast.error('Google login is not configured.');
-                    return;
-                  }
-                  window.google?.accounts?.id?.prompt?.();
-                }}
-                className="w-full py-3 px-4 bg-white text-gray-800 font-semibold rounded-xl hover:bg-gray-100 focus:outline-none transition-all flex items-center justify-center gap-3"
-              >
-                <svg className="w-5 h-5" viewBox="0 0 24 24">
-                  <path fill="#4285F4" d="M23.49 12.27c0-.79-.07-1.54-.19-2.27H12v4.51h6.47c-.29 1.48-1.14 2.73-2.4 3.58v3h3.86c2.26-2.09 3.56-5.17 3.56-8.82z" />
-                  <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.86-3c-1.08.72-2.45 1.16-4.07 1.16-3.13 0-5.78-2.11-6.73-4.96H1.29v3.09C3.26 21.3 7.31 24 12 24z" />
-                  <path fill="#FBBC05" d="M5.27 14.29c-.25-.72-.38-1.49-.38-2.29s.14-1.57.38-2.29V6.62H1.29C.47 8.24 0 10.06 0 12s.47 3.76 1.29 5.38l3.98-3.09z" />
-                  <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.26 2.7 1.29 6.62l3.98 3.09C6.22 6.86 8.87 4.75 12 4.75z" />
-                </svg>
-                Sign up with Google
-              </button>
+          {GOOGLE_CLIENT_ID && (
+            <div className="w-full">
+              <div ref={googleBtnRef} className="flex justify-center" />
+              {!googleReady && (
+                <button
+                  type="button"
+                  onClick={handleGoogleSignIn}
+                  className="w-full py-3 px-4 bg-white text-gray-800 font-semibold rounded-xl hover:bg-gray-100 focus:outline-none transition-all flex items-center justify-center gap-3"
+                >
+                  <svg className="w-5 h-5" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M23.49 12.27c0-.79-.07-1.54-.19-2.27H12v4.51h6.47c-.29 1.48-1.14 2.73-2.4 3.58v3h3.86c2.26-2.09 3.56-5.17 3.56-8.82z" />
+                    <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.86-3c-1.08.72-2.45 1.16-4.07 1.16-3.13 0-5.78-2.11-6.73-4.96H1.29v3.09C3.26 21.3 7.31 24 12 24z" />
+                    <path fill="#FBBC05" d="M5.27 14.29c-.25-.72-.38-1.49-.38-2.29s.14-1.57.38-2.29V6.62H1.29C.47 8.24 0 10.06 0 12s.47 3.76 1.29 5.38l3.98-3.09z" />
+                    <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.26 2.7 1.29 6.62l3.98 3.09C6.22 6.86 8.87 4.75 12 4.75z" />
+                  </svg>
+                  Sign up with Google
+                </button>
+              )}
             </div>
-          ) : (
-            <button
-              type="button"
-              onClick={() => toast.error('Google login is not configured. Set VITE_GOOGLE_CLIENT_ID.')}
-              className="w-full py-3 px-4 bg-white/10 text-white font-semibold rounded-xl hover:bg-white/20 focus:outline-none transition-all"
-            >
-              Sign up with Google
-            </button>
           )}
 
           <p className="mt-8 text-center text-gray-400">

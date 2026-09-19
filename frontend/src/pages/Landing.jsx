@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiFileText, FiTarget, FiBarChart2, FiMap, FiMessageSquare, FiMic, FiUpload, FiCpu } from 'react-icons/fi';
+import Footer from '../components/layout/Footer';
 
 const features = [
   {
@@ -324,18 +325,9 @@ const Landing = () => {
       </div>
 
       {/* Footer */}
-      <footer className="relative z-10 border-t border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="flex items-center space-x-2">
-              <span className="text-lg font-semibold text-white">CareerAI</span>
-            </div>
-            <p className="text-gray-500 text-sm">
-              Built with ❤️ for fresh graduates. Powered by AI.
-            </p>
-          </div>
-        </div>
-      </footer>
+      <div className="relative z-10 border-t border-purple-900/30">
+        <Footer />
+      </div>
     </div>
   );
 };

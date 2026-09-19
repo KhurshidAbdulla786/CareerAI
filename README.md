@@ -53,5 +53,5 @@ CareerAI is a full-stack platform leveraging Large Language Models (LLMs) to pro
 | 6 | Skill Gap Analysis & Learning Roadmaps | ✅ |
 | 7 | AI Career Chat Assistant (RAG-based) | ✅ |
 | 8 | Interview Simulation with AI Feedback | ✅ |
-| 9 | Frontend polish, testing & deployment | ⬜ |
+| 9 | Frontend polish — Navbar, Footer, Dashboard, Landing page, Google login fix | ✅ |
 | 10 | Final review & documentation | ⬜ |
