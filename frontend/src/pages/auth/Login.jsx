@@ -34,7 +34,7 @@ const Login = () => {
             try {
               await googleLogin(response.credential);
               toast.success('Welcome back! 🎉');
-              // Navigation is handled by the isAuthenticated useEffect above
+              navigate('/dashboard', { replace: true });
             } catch (error) {
               toast.error(error.message || 'Google login failed');
             }
