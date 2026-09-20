@@ -17,7 +17,6 @@
 - [Environment Variables](#-environment-variables)
 - [API Reference](#-api-reference)
 - [Docker Deployment](#-docker-deployment)
-- [Development Progress](#-development-progress)
 
 ---
 
@@ -229,25 +228,6 @@ docker-compose up --build
 | Backend API | http://localhost:5000 |
 | AI Service | http://localhost:8000 |
 | MongoDB | localhost:27017 |
-
----
-
-## 📅 Development Progress
-
-| Day | Milestone | Status |
-|-----|-----------|--------|
-| 1 | Project initialization & monorepo scaffolding | ✅ |
-| 2 | Backend — Express server, MongoDB models (User, Job, ChatHistory) | ✅ |
-| 3 | Authentication — JWT auth, email verification, protected routes | ✅ |
-| 4 | CV Analyzer — upload & AI-powered analysis | ✅ |
-| 4b | PDF Parsing — pdf-parse (Node) & pypdf2 (Python) | ✅ |
-| 4c | AI Integration — Groq (Llama 3.3 70B) via LangChain | ✅ |
-| 5 | Job Matching — skill comparison & gap analysis | ✅ |
-| 6 | Skill Gap Analysis & Learning Roadmaps | ✅ |
-| 7 | AI Career Chat Assistant (RAG-based) | ✅ |
-| 8 | Interview Simulation with AI Feedback | ✅ |
-| 9 | Frontend polish — Navbar, Footer, Dashboard, Landing, Google login fix | ✅ |
-| 10 | Final review & documentation | ✅ |
 
 ---
 
