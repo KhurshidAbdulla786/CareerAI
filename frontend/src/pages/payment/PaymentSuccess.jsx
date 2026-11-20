@@ -12,7 +12,7 @@ export default function PaymentSuccess() {
 
   useEffect(() => {
     const sessionId = searchParams.get('session_id');
-    const esewaData = searchParams.get('data');
+    const esewa = searchParams.get('data');
     // Detect gateway robustly: eSewa redirects with "data", Stripe with "session_id".
     // (eSewa appends its own ?data= to the success URL, so we don't pre-add ?gateway=esewa.)
     const gateway = esewa
