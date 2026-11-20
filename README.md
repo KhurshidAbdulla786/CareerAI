@@ -246,6 +246,7 @@ docker-compose up --build
 | Career Chat | RAG-based AI career chat assistant | ✅ |
 | Interview Simulator | Mock interviews with AI feedback | ✅ |
 | Frontend Polish | Navbar, Footer, Dashboard, Landing, Google login fix | ✅ |
+| **UI Redesign** | **Unified design system, professional light theme, consistent components** | **✅** |
 | Documentation | README, API docs, architecture diagrams | ✅ |
 
 ---
